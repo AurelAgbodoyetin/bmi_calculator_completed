@@ -32,6 +32,32 @@ class _InputPageState extends State<InputPage> {
         title: const Text('CALCULATRICE D\'IMC'),
         backgroundColor: backgroundColor,
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text("A Propos"),
+                    content: const Text(
+                      "Cette application calcule l'indice de masse corporelle",
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text("OK"),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            icon: const Icon(Icons.info_outlined),
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
@@ -323,6 +349,7 @@ class _InputPageState extends State<InputPage> {
           String cat = getBMICategory(bmi);
           String desc = getBMIInterpretation(bmi);
           Color col = getBMIColor(bmi);
+
           Navigator.push(
             context,
             MaterialPageRoute(
